@@ -5,10 +5,15 @@ metadata:
     namespace: nextjs-app
     annotations:
         kubernetes.io/ingress.class: traefik
-        traefik.ingress.kubernetes.io/router.entrypoints: web
+        cert-manager.io/cluster-issuer: letsencrypt-prod
 spec:
+    tls:
+        - hosts:
+              - fahreza-dev.web.id
+          secretName: nextjs-tls
     rules:
-        - http:
+        - host: fahreza-dev.web.id
+          http:
               paths:
                   - path: /
                     pathType: Prefix
