@@ -98,10 +98,11 @@ jobs:
                       docker pull ${{ env.DOCKER_REGISTRY }}/${{ env.DOCKER_IMAGE_NAME }}:latest
 
                       # Update Kubernetes deployment
-                      kubectl set image deployment/nextjs-app nextjs-app=${{ env.DOCKER_REGISTRY }}/${{ env.DOCKER_IMAGE_NAME }}:latest
+                      kubectl apply -f k8s/
+                      kubectl set image deployment/nextjs-app nextjs-app=${{ env.DOCKER_REGISTRY }}/${{ env.DOCKER_IMAGE_NAME }}:latest -n nextjs
 
                       # Wait for rollout to complete
-                      kubectl rollout status deployment/nextjs-app
+                      kubectl rollout status deployment/nextjs-app -n nextjs
 
                       # Clean up old images
                       docker image prune -af
