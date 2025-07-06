@@ -12,6 +12,8 @@ metadata:
         nginx.ingress.kubernetes.io/proxy-read-timeout: "60"
         nginx.ingress.kubernetes.io/ssl-redirect: "false"
         nginx.ingress.kubernetes.io/force-ssl-redirect: "false"
+        nginx.ingress.kubernetes.io/configuration-snippet: |
+            more_set_headers "X-Forwarded-Proto: https";
 spec:
     rules:
         - host: fahreza-dev.web.id
