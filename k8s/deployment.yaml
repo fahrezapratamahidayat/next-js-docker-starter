@@ -12,10 +12,12 @@ spec:
         metadata:
             labels:
                 app: nextjs-app
+            annotations:
+                timestamp: "{{ .Release.Time }}"
         spec:
             containers:
                 - name: nextjs-app
-                  image: docker.io/zayyen/nextjs-ci-app:latest
+                  image: docker.io/zayyen/nextjs-ci-app:${GITHUB_SHA}
                   imagePullPolicy: Always
                   ports:
                       - containerPort: 3000
