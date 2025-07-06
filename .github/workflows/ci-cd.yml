@@ -75,7 +75,18 @@ jobs:
                   export KUBECONFIG=kubeconfig.yaml
                   kubectl set image deployment/nextjs-app nextjs-app=${{ env.DOCKER_IMAGE }}:${{ github.sha }} -n ${{ env.K8S_NAMESPACE }}
 
+            - name: Force Restart Deployment
+              run: |
+                  export KUBECONFIG=kubeconfig.yaml
+                  kubectl rollout restart deployment/nextjs-app -n ${{ env.K8S_NAMESPACE }}
+
             - name: Verify Deployment
               run: |
                   export KUBECONFIG=kubeconfig.yaml
                   kubectl rollout status deployment/nextjs-app -n ${{ env.K8S_NAMESPACE }}
+                  kubectl wait --for=condition=available --timeout=300s deployment/nextjs-app -n ${{ env.K8S_NAMESPACE }}
+
+            - name: Get Pod Status
+              run: |
+                  export KUBECONFIG=kubeconfig.yaml
+                  kubectl get pods -n ${{ env.K8S_NAMESPACE }} -l app=nextjs-app
