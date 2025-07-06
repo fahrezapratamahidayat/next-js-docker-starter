@@ -2,9 +2,9 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
     name: nextjs-app
-    namespace: nextjs-app
+    namespace: nextjs
 spec:
-    replicas: 3
+    replicas: 1
     selector:
         matchLabels:
             app: nextjs-app
@@ -23,11 +23,11 @@ spec:
                             name: nextjs-config
                   resources:
                       requests:
-                          memory: "256Mi"
-                          cpu: "250m"
+                          memory: "128Mi"
+                          cpu: "100m"
                       limits:
-                          memory: "512Mi"
-                          cpu: "500m"
+                          memory: "256Mi"
+                          cpu: "200m"
                   livenessProbe:
                       httpGet:
                           path: /
