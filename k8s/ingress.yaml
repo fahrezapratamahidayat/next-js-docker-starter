@@ -5,20 +5,12 @@ metadata:
     namespace: nextjs
     annotations:
         kubernetes.io/ingress.class: "nginx"
-        cert-manager.io/cluster-issuer: "letsencrypt-prod"
         nginx.ingress.kubernetes.io/proxy-body-size: "50m"
         nginx.ingress.kubernetes.io/proxy-buffer-size: "8k"
-        nginx.ingress.kubernetes.io/ssl-redirect: "true"
-        nginx.ingress.kubernetes.io/force-ssl-redirect: "true"
-        nginx.ingress.kubernetes.io/backend-protocol: "HTTP"
         nginx.ingress.kubernetes.io/proxy-connect-timeout: "60"
         nginx.ingress.kubernetes.io/proxy-send-timeout: "60"
         nginx.ingress.kubernetes.io/proxy-read-timeout: "60"
 spec:
-    tls:
-        - hosts:
-              - fahreza-dev.web.id
-          secretName: nextjs-tls
     rules:
         - host: fahreza-dev.web.id
           http:
