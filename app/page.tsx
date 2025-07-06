@@ -4,7 +4,6 @@ export default function Home() {
             <div className=''>
                 <h1>Fahreza Pratama Hidayats</h1>
                 <span>2206144</span>
-                test ci/cd dulu
             </div>
         </main>
     );
