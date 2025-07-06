@@ -4,17 +4,10 @@ metadata:
     name: nextjs-ingress
     namespace: nextjs-app
     annotations:
-        nginx.ingress.kubernetes.io/rewrite-target: /
-        cert-manager.io/cluster-issuer: "letsencrypt-prod"
+        kubernetes.io/ingress.class: traefik
 spec:
-    ingressClassName: traefik
-    tls:
-        - hosts:
-              - your-domain.com
-          secretName: nextjs-tls
     rules:
-        - host: your-domain.com
-          http:
+        - http:
               paths:
                   - path: /
                     pathType: Prefix
