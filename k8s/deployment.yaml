@@ -13,6 +13,8 @@ spec:
             labels:
                 app: nextjs-app
         spec:
+            imagePullSecrets:
+                - name: docker-hub-secret
             containers:
                 - name: nextjs-app
                   image: docker.io/zayyen/nextjs-ci-app:latest
