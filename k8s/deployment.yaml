@@ -15,7 +15,7 @@ spec:
         spec:
             containers:
                 - name: nextjs-app
-                  image: your-registry/your-repo:latest
+                  image: docker.io/zayyen/nextjs-ci-app:latest
                   ports:
                       - containerPort: 3000
                   envFrom:
